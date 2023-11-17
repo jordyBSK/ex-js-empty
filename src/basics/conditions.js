@@ -14,6 +14,14 @@
  */
 export function isBiggerThan2(n) {
   //
+    if (isNaN(n)) {
+        throw new Error('not a number!');
+    }
+
+    if (n > 2){
+        return true
+    }else{
+    return n > 2;}
 }
 
 /**
@@ -23,4 +31,11 @@ export function isBiggerThan2(n) {
  */
 export function isMult(n, m) {
   //
+    if (isNaN(n)) {
+        throw new Error('not a number!');
+    }   if (isNaN(m)) {
+        throw new Error('not a number!');
+    }
+
+    return n % m === 0;
 }

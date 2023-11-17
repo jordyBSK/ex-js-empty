@@ -1,9 +1,19 @@
+import * as string_decoder from "string_decoder";
+
 /**
  * @param {array<string>} array An array containing words and sentences
  * @return {array<string>} An array with all words isolated, and with empty strings removed
  */
 export function splitAllStringsByWordAndFilterEmptyOnes(array) {
   //
+    for (let i = 0; i < array.length; i++) {
+        array[i].split()
+        if (array[i] === ""){
+            array.splice(i, 1);
+        }
+    }
+    let newArray = array.filter(element => element !== '');
+    return newArray
 }
 
 /**
@@ -14,6 +24,7 @@ export function splitAllStringsByWordAndFilterEmptyOnes(array) {
  */
 export function concatenateArrays(array1, array2) {
   //
+
 }
 
 /**
