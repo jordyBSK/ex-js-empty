@@ -1,4 +1,4 @@
-import {isString} from "util";
+import { isString } from "util";
 
 /**
  * Find and replace in the provided string, but preserving case

@@ -4,16 +4,19 @@ import * as string_decoder from "string_decoder";
  * @param {array<string>} array An array containing words and sentences
  * @return {array<string>} An array with all words isolated, and with empty strings removed
  */
+
 export function splitAllStringsByWordAndFilterEmptyOnes(array) {
-  //
-    for (let i = 0; i < array.length; i++) {
-        array[i].split()
-        if (array[i] === ""){
-            array.splice(i, 1);
-        }
+  let newArray = [];
+  for (let i = 0; i < array.length; i++) {
+    let splitArray = array[i].split(' ');
+
+    for (let j = 0; j < splitArray.length; j++) {
+      if (splitArray[j] !== '') {
+        newArray.push(splitArray[j]);
+      }
     }
-    let newArray = array.filter(element => element !== '');
-    return newArray
+  }
+  return newArray;
 }
 
 /**
@@ -24,7 +27,9 @@ export function splitAllStringsByWordAndFilterEmptyOnes(array) {
  */
 export function concatenateArrays(array1, array2) {
   //
+  const concatArray = array1.concat(array2);
 
+  return concatArray
 }
 
 /**
@@ -33,10 +38,9 @@ export function concatenateArrays(array1, array2) {
  * @param {...*} newElements
  * @return {array<*>} A new array, sorted, **the original array should not be modified**
  */
-export function replaceElementsInArrayAtAGivenPlace(
-  array,
-  index,
-  ...newElements
-) {
+export function replaceElementsInArrayAtAGivenPlace(array, index, ...newElements) {
   //
+  let newArray = [...array]
+  newArray.splice(index, newElements.length, newElements)
+  return newArray.flat()
 }

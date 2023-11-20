@@ -31,6 +31,7 @@ export function accessPropertiesInObjects(object) {
  */
 export function iteratesThroughObjectValuesAndProperties(object) {
   //
+
 }
 
 /**

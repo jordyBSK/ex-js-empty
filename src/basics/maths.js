@@ -3,14 +3,14 @@
  * @return {number} sphere volume
  */
 export function computeSphereVolume(diameter) {
-  //
+    //
 
     if (isNaN(diameter)) {
         throw new Error('Parameter is not a number!');
     }
     let r = diameter / 2
 
-   return 4/3 * Math.PI *  Math.pow(r, 3);
+    return 4 / 3 * Math.PI * Math.pow(r, 3);
 }
 
 /**
@@ -18,7 +18,7 @@ export function computeSphereVolume(diameter) {
  * @return {number} number rounded to one decimal
  */
 export function roundNumberToOneDecimals(n) {
-  //
+    //
 
     if (isNaN(n)) {
         throw new Error('Parameter is not a number!');
@@ -32,7 +32,7 @@ export function roundNumberToOneDecimals(n) {
  * @return {number} average with full precision
  */
 export function computeAverage(grades) {
-  //
+    //
     if (!Array.isArray(grades) || grades.length === 0) {
         throw new Error('Array is empty');
     }
@@ -55,7 +55,7 @@ export function computeAverage(grades) {
  * @return {number} rounded average to 1 decimal
  */
 export function roundedAverage(grades) {
-  //
+    //
     if (!Array.isArray(grades) || grades.length === 0) {
         throw new Error('Array is empty');
     }
@@ -64,7 +64,7 @@ export function roundedAverage(grades) {
 
     for (let i = 0; i < grades.length; i++) {
         if (isNaN(grades[i]) || grades[i] === "") {
-            throw new Error('Element at index ' + {i} + 'is not a valid number');
+            throw new Error('Element at index ' + { i } + 'is not a valid number');
         }
         sum += parseFloat(grades[i]);
     }
