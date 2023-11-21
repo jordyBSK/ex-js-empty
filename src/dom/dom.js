@@ -9,6 +9,8 @@
  */
 export function getElementFromDomAndChangeColorToRed() {
   //
+  const element = document.getElementById("change-my-color");
+element.style.color = "red"
 }
 
 /**
@@ -17,6 +19,18 @@ export function getElementFromDomAndChangeColorToRed() {
  */
 export function addElementsInDOM() {
   //
+  var newDiv = document.createElement("div");
+
+  var paragraphe = document.createElement("p");
+
+  var textP = document.createTextNode("bonjour");
+
+  Paragraphe.appendChild(textP);
+
+  newDiv.appendChild(Paragraphe);
+
+  document.body.appendChild(newDiv);
+
 }
 
 /**
