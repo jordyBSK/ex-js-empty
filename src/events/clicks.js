@@ -5,6 +5,11 @@
  */
 export function reactToClickEvent() {
   //
+  const button = document.getElementById("click-me")
+
+  button.addEventListener("click",() => {
+    alert("Button clicked")
+  })
 }
 
 /**
@@ -12,5 +17,13 @@ export function reactToClickEvent() {
  * But this time you should add a new div below the button with the content "clicked"
  */
 export function addEventToDomOnClick() {
-  //
+  const button = document.getElementById("click-me");
+
+  button.addEventListener("click", () => {
+    const newDiv = document.createElement('div');
+
+    newDiv.innerHTML = "clicked";
+
+    button.parentNode.appendChild(newDiv);
+  });
 }

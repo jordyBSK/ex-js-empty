@@ -1,10 +1,9 @@
-/**
- * Register a new event listener that will retrieve the position of the mouse on the screen
- * and display the coordinates on the p with id "mouse-coordinates".
- * You need to display coordinates as follows : "x: 232, y: 332
- */
 export function mouseMovements() {
-  //
+  const coordinatesParagraph = document.getElementById("mouse-coordinates")
+
+  document.addEventListener("mousemove", (event) => {
+    coordinatesParagraph.textContent = `x: ${event.clientX}, y: ${event.clientY}`
+  })
 }
 
 /**
@@ -17,7 +16,44 @@ export function mouseMovements() {
  * Third, when you loose focus of the field, you need to reset the border color to the default one.
  */
 export function hoverFocusAndBlur() {
-  //
+  const input = document.getElementById("focus-me")
+  const originalBorderColor = window.getComputedStyle(input).borderColor
+  let labels = document.querySelectorAll("label[for='focus-me']")
+  let originalLabels = []
+
+  for (let i of input.labels) {
+    originalLabels.push(i.textContent)
+  }
+
+  labels.forEach((label) => {
+    input.addEventListener("mouseout", () => {
+      for (let i = 0; i < input.labels.length; i++) {
+        input.labels[i].textContent = originalLabels[i]
+      }
+    })
+
+    input.addEventListener("mouseover", () => {
+      for (let i of input.labels) {
+        i.textContent = "Yes, you hover me !"
+      }
+    })
+  })
+
+  input.addEventListener("focus", () => {
+    let newBorderColor
+    do {
+      let x = Math.floor(Math.random() * 256)
+      let y = Math.floor(Math.random() * 256)
+      let z = Math.floor(Math.random() * 256)
+      newBorderColor = `rgb(${x},${y},${z})`
+    } while (newBorderColor === originalBorderColor)
+
+    input.style.borderColor = newBorderColor
+  })
+
+  input.addEventListener("blur", () => {
+    input.style.borderColor = originalBorderColor
+  })
 }
 
 /**

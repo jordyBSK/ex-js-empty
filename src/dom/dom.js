@@ -19,18 +19,9 @@ element.style.color = "red"
  */
 export function addElementsInDOM() {
   //
-  var newDiv = document.createElement("div");
-
-  var paragraphe = document.createElement("p");
-
-  var textP = document.createTextNode("bonjour");
-
-  Paragraphe.appendChild(textP);
-
-  newDiv.appendChild(Paragraphe);
-
+  const newDiv = document.getElementById("add-your-elements-in-this-element")
+  newDiv.innerHTML ="bonjour Toto";
   document.body.appendChild(newDiv);
-
 }
 
 /**
@@ -40,5 +31,16 @@ export function addElementsInDOM() {
  * @param {array<{name: string, color: string}>} listElements
  */
 export function addAListInDomFromAnArrayOfObjects(listElements) {
-  //
+
+  const ul = document.createElement('ul');
+
+  listElements.forEach(function (obj) {
+    const li = document.createElement('li');
+    li.textContent = obj.name;
+    li.style.backgroundColor = obj.color;
+    ul.appendChild(li);
+  });
+
+  const listContainer = document.getElementById('add-list-here');
+  listContainer.appendChild(ul);
 }

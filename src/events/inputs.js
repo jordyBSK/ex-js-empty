@@ -5,6 +5,13 @@
  */
 export function displayInputContentInAlertOnEnterKey() {
   //
+  const text = document.getElementById("write-some-text")
+
+  text.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      alert(text.value)
+    }
+  })
 }
 
 /**
@@ -14,6 +21,31 @@ export function displayInputContentInAlertOnEnterKey() {
  */
 export function addElementsInListOnEnterKey() {
   //
+  const text = document.getElementById("list-input")
+  const list = document.getElementById("list")
+  function addLI() {
+    const li = document.createElement("li")
+    li.className
+    li.textContent = text.value
+    list.appendChild(li)
+    text.value = ""
+  }
+
+  text.addEventListener("keypress", (event) => {
+    if (text.value !== "") {
+      if (event.key === "Enter") {
+        addLI()
+      }
+    }
+  })
+  text.addEventListener("blur", (event) => {
+    console.log(event)
+    if (text.value !== "") {
+      if (event.isTrusted === true) {
+        addLI()
+      }
+    }
+  })
 }
 
 /**
@@ -22,4 +54,11 @@ export function addElementsInListOnEnterKey() {
  */
 export function removeElementsFromListWhenClicked() {
   //
+  const list = document.getElementById("list")
+
+  list.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI") {
+      event.target.remove()
+    }
+  })
 }
