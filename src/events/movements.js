@@ -15,27 +15,24 @@ export function mouseMovements() {
  *         but different from all the previously used and different from the original one.
  * Third, when you loose focus of the field, you need to reset the border color to the default one.
  */
+const input = document.getElementById("focus-me")
+const originalColor = input.style.borderColor
 export function hoverFocusAndBlur() {
-  const input = document.getElementById("focus-me")
-  const originalBorderColor = window.getComputedStyle(input).borderColor
-  let labels = document.querySelectorAll("label[for='focus-me']")
-  let originalLabels = []
-
-  for (let i of input.labels) {
-    originalLabels.push(i.textContent)
-  }
+  const labels = document.querySelectorAll("label[for='focus-me']")
+  const originalLabels = Array.from(input.labels, (label) => label.textContent)
+  const usedColors = [originalColor]
 
   labels.forEach((label) => {
     input.addEventListener("mouseout", () => {
-      for (let i = 0; i < input.labels.length; i++) {
-        input.labels[i].textContent = originalLabels[i]
-      }
+      input.labels.forEach((label, i) => {
+        label.textContent = originalLabels[i]
+      })
     })
 
     input.addEventListener("mouseover", () => {
-      for (let i of input.labels) {
-        i.textContent = "Yes, you hover me !"
-      }
+      input.labels.forEach((label) => {
+        label.textContent = "Yes, you hover me!"
+      })
     })
   })
 
@@ -46,13 +43,13 @@ export function hoverFocusAndBlur() {
       let y = Math.floor(Math.random() * 256)
       let z = Math.floor(Math.random() * 256)
       newBorderColor = `rgb(${x},${y},${z})`
-    } while (newBorderColor === originalBorderColor)
-
+    } while (usedColors.includes(newBorderColor))
+    usedColors.push(newBorderColor)
     input.style.borderColor = newBorderColor
   })
 
   input.addEventListener("blur", () => {
-    input.style.borderColor = originalBorderColor
+    input.style.borderColor = originalColor
   })
 }
 
@@ -65,5 +62,21 @@ export function hoverFocusAndBlur() {
  * Take the opportunity to also apply this colour to the text of the 2 input labels.
  */
 export function changesOnInputEvents() {
-  //
+  input.addEventListener("input", () => {
+    const newColor = getRandomColor()
+    input.style.borderColor = newColor
+
+    const labels = document.querySelectorAll(`label[for='${input.id}']`)
+    labels.forEach((label) => {
+      label.style.color = newColor
+    })
+  })
+}
+
+function getRandomColor() {
+  let x = Math.floor(Math.random() * 256)
+  let y = Math.floor(Math.random() * 256)
+  let z = Math.floor(Math.random() * 256)
+
+  return `rgb(${x},${y},${z})`
 }
