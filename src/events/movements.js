@@ -16,7 +16,7 @@ export function mouseMovements() {
  * Third, when you loose focus of the field, you need to reset the border color to the default one.
  */
 const input = document.getElementById("focus-me")
-const originalColor = input.style.borderColor
+let originalColor = input.style.borderColor
 export function hoverFocusAndBlur() {
   const labels = document.querySelectorAll("label[for='focus-me']")
   const originalLabels = Array.from(input.labels, (label) => label.textContent)
@@ -62,9 +62,15 @@ export function hoverFocusAndBlur() {
  * Take the opportunity to also apply this colour to the text of the 2 input labels.
  */
 export function changesOnInputEvents() {
+  const input = document.getElementById("focus-me")
+
   input.addEventListener("input", () => {
+    const defaultBorderColor = window
+      .getComputedStyle(input)
+      .getPropertyValue("border-color")
     const newColor = getRandomColor()
-    input.style.borderColor = newColor
+
+    originalColor = newColor
 
     const labels = document.querySelectorAll(`label[for='${input.id}']`)
     labels.forEach((label) => {
